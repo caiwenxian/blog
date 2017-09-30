@@ -25,13 +25,20 @@
 .weight {
     font-weight: 600;
 }
+.cursor-pointer {
+    cursor: pointer;
+}
 
+body {
+    background: whitesmoke;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,\5FAE\8F6F\96C5\9ED1,Tahoma,Arial,sans-serif !important;
+}
 .body {
-    font: 14px Helvetica Neue,Helvetica,PingFang SC,\5FAE\8F6F\96C5\9ED1,Tahoma,Arial,sans-serif !important
 }
 .body-main {
     height: 800px;
     margin-top: 62px;
+    margin-bottom: 100px;
     position: relative;
     width: 1170px;
     left: 19%;
