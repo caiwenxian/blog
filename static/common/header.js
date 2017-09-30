@@ -1,8 +1,8 @@
 // $(function() {
-    document.writeln("<script src=\'../static/plugins/jquery/jquery.min.js\'></script>");
-    document.writeln("<script src=\'../../static/plugins/layui/layui.js\'></script>");
-    document.writeln("<script src=\'../../static/plugins/vue/vue.min.js\'></script>");
-    document.writeln("<link rel=\'stylesheet\' href=\'../../static/plugins/layui/css/layui.css\'>");
+    document.writeln("<script src=\'/blog/static/plugins/jquery/jquery.min.js\'></script>");
+    document.writeln("<script src=\'/blog/static/plugins/layui/layui.js\'></script>");
+    document.writeln("<script src=\'/blog/static/plugins/vue/vue.min.js\'></script>");
+    document.writeln("<link rel=\'stylesheet\' href=\'/blogs/static/plugins/layui/css/layui.css\'>");
     document.writeln("<script>");
     document.writeln("    layui.use([\'layer\', \'element\'], function() {");
     document.writeln("    });");
