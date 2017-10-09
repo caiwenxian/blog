@@ -10,6 +10,8 @@
      music.vm.getMusicList();
      //初始化播放器
      $( 'audio' ).audioPlayer();
+
+     // music.search();
  }
  music.vm = new Vue({
     el: '.vue-content',
@@ -35,5 +37,22 @@
      var data = null;
      http.get(url, data, function (result) {
          console.log(result)
+     })
+ }
+ 
+ music.search = function () {
+     const keywords = '海阔天空'
+     const type = 1
+     const limit = 30
+     const data = 's=' + keywords + '&limit=' + limit + '&type=' + type + '&offset=0'
+     http.create_netease('/api/search/pc/', 'POST', data)
+         .then(function (result){
+         console.log(JSON.parse(result).result.songs[0].mp3Url)
+             assert(JSON.parse(result).result.songs[0].name === '海阔天空')
+             // done()
+         })
+     .catch(function (err){
+         console.log('error:', err)
+         // done(err)
      })
  }
