@@ -27,6 +27,7 @@
                 elem: '#carousel'
                 ,arrow: 'always'
                 ,width: '100%'
+                ,height: '280px'
             });
         }, 300);
     } else {
@@ -34,6 +35,7 @@
             elem: '#carousel'
             ,arrow: 'always'
             ,width: '100%'
+            ,height: '280px'
         });
     }
  }
