@@ -1,14 +1,42 @@
 var http = {};
+http.URL = 'http://localhost:8080';
 
 http.get = function (url, data, callback) {
     $.ajax({
-        url: url,
+        method: 'GET',
+        url: http.URL + url,
         data: data,
         async: false,
         success: function (result) {
             if (typeof callback == 'function') {
                 callback(result);
             }
+        },
+        error: function (result) {
+            if (result.status === 101) {
+                layer.msg("未登录")
+            }
+            console.log(result)
+        }
+    });
+}
+
+http.post = function (url, data, callback) {
+    $.ajax({
+        method: 'POST',
+        url: http.URL + url,
+        data: data,
+        async: false,
+        success: function (result) {
+            if (typeof callback == 'function') {
+                callback(result);
+            }
+        },
+        error: function (result) {
+            if (result.status === 101) {
+                layer.msg("未登录")
+            }
+            console.log(result)
         }
     });
 }

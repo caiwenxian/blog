@@ -37,9 +37,31 @@ body {
 }
 .body-main {
     height: 800px;
-    margin-top: 60px;
     margin-bottom: 100px;
     position: relative;
     width: 1170px;
     left: 19%;
+    background-color: white;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.btn-outline-danger {
+    border: 1px solid #C92027;
+    background-color: transparent;
+    background-image: none;
+    border-color: #dc3545;
+    padding: 0.2rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+}
+
+.color-ganger {
+    color: #C92027;
+}
+
+.color-ganger:hover {
+    background-color: #C92027;
+    color: white;
 }

@@ -7,14 +7,25 @@
 <script src="../static/js/common/header.js"></script>
 <body>
 <div class="body">
-    <div class="body-main vue-content">
-        <p class="center weight" style="margin-top: 100px">知识专栏开发中...</p>
+    <div class="body-main vue-content" id="vue-content">
+        <!--<p class="center weight" style="margin-top: 100px">知识专栏开发中...</p>-->
+        <div v-for="article in article.list" v-html="article.content">
 
+        </div>
     </div>
 </div>
 </body>
+<script src="../static/js/common/footer.js"></script>
 </html>
+<script src="/blog/static/js/knowledge.js?v=1.1.1"></script>
 <script>
     common.changeNav(1);
+    article.init();
+
+    layui.use('code', function(){
+
+        layui.code();
+    });
+
 </script>
 
