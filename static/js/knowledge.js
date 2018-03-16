@@ -1,5 +1,3 @@
-
-
 var article = {};
 
 article.init = function () {
@@ -25,7 +23,7 @@ article.vm = new Vue({
             var vm = article.vm;
             var url = '/knowledge/articles/' + vm.article.page;
             var data = {
-                title:  vm.article.searchKeyWord
+                title: vm.article.searchKeyWord
             };
             http.get(url, data, function (result) {
 
@@ -37,8 +35,16 @@ article.vm = new Vue({
 
             });
         },
-
-
-
+        goDetails: function (id) {
+            window.location.href = '/knowledge/article/details/' + id;
+        }
+    },
+    filters: {
+        date: function (value, fmt) {
+            if (null === value) {
+                return null;
+            }
+            return new Date(value).Format(fmt);
+        }
     }
 });

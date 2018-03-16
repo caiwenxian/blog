@@ -7,28 +7,49 @@
 <body>
 <div class="body-main " id="vue-content">
 
-    <div id="editor">
-        <p>hello</p>
-    </div>
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>发布文章</legend>
+    </fieldset>
+    <form class="layui-form" action="">
+        <label class="layui-form-label">文章类型：</label>
+        <div class="layui-form-item select-article-type">
+            <select name="type" v-model="articleType">
+                <option value="TECHNOLOGY" selected="">技术</option>
+                <option value="LIFE">生活</option>
+            </select>
+        </div>
+        <p></p>
+        <label class="layui-form-label">文章标题：</label>
+        <div class="layui-input-block" style="margin-bottom: 15px;">
+            <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off"
+                   class="layui-input" v-model="articleTitle">
+        </div>
+        <p></p>
+        <label class="layui-form-label">文章内容：</label>
+        <div id="editor" style="display: grid">
+            <p>hello</p>
+        </div>
 
-    <div class="div-publish">
-        <input type="button" class="btn-outline-danger color-ganger cursor-pointer publish" value="发布" @click="publish()">
-        <input type="button" class="btn-outline-danger color-ganger cursor-pointer publish" value="预览" @click="preview()">
-        <input type="button" class="btn-outline-danger color-ganger cursor-pointer publish" value="保存草稿" @click="saveDraft()">
-    </div>
+        <p></p>
+        <label class="layui-form-label"></label>
+        <div class="div-publish" style="display: inline-table;">
+            <input type="button" class="btn-outline-danger color-ganger cursor-pointer publish" value="发布"
+                   @click="publish()">
+            <input type="button" class="btn-outline-danger color-ganger cursor-pointer publish" value="预览"
+                   @click="preview()">
+            <input type="button" class="btn-outline-danger color-ganger cursor-pointer publish" value="保存草稿"
+                   @click="saveDraft()">
+        </div>
+    </form>
+
+
+
+
 
     <div id="preview" class="div-preview none" v-html="articleContent">
 
     </div>
 </div>
-
-
-
-
-
-
-
-
 
 <!--<pre class="layui-code">
     Lay.fn.event = function(modName, events, params){
@@ -44,9 +65,10 @@
 <script type="text/javascript" src="/blog/static/plugins/vue/vue.min.js"></script>
 <script src="/blog/static/js/knowledge-publish.js"></script>
 <script type="text/javascript">
-    layui.use('code', function(){
+    layui.use(['code', 'form'], function () {
 
-        layui.code(); //实际使用时，执行该方法即可。而此处注释是因为修饰器在别的js中已经执行过了
+        layui.code();
+        var form = layui.form;
     });
 
     var E = window.wangEditor;
@@ -56,12 +78,12 @@
     editor.customConfig.uploadImgServer = '/upload';  // 上传图片到服务器
     editor.create();
 
-   /* document.getElementById('btn1').addEventListener('click', function () {
-        // 读取 html
-        console.log(editor.txt.html());
+    /* document.getElementById('btn1').addEventListener('click', function () {
+         // 读取 html
+         console.log(editor.txt.html());
 
-    }, false);
-*/
+     }, false);
+ */
 
 
 </script>
@@ -71,10 +93,12 @@
     .div-publish {
         margin-top: 20px;
     }
+
     .div-preview {
         min-width: 1170px;
         min-height: 400px;
     }
+
     pre code {
         position: relative;
         padding: 15px;
@@ -86,9 +110,17 @@
         font-family: Courier New;
         font-size: 12px;
     }
-    .w-e-text-container{
+
+    .select-article-type {
+        display: inline-block;
+    }
+
+    .w-e-text-container {
         height: 500px !important;
         /*max-height: 500px;*/
+    }
+    #editor div {
+        z-index: 100 !important;
     }
 </style>
 </html>

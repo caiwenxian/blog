@@ -9,17 +9,28 @@ publish.init = function () {
 publish.vm = new Vue({
     el: '#vue-content',
     data: {
-        articleContent: ''
+        articleContent: '',
+        articleType: 'TECHNOLOGY',
+        articleTitle: null,
+        articleContentText: null
     },
     methods: {
         publish: function () {
             publish.vm.articleContent = editor.txt.html();
+            publish.vm.articleContentText = editor.txt.text();
             publish.vm.articleContent = publish.vm.articleContent.replace("<pre><code>", "<pre class=layui-code>");
             publish.vm.articleContent = publish.vm.articleContent.replace("</code></pre>", "</pre>");
             var url = '/knowledge/publish';
             var data = {
-                content: publish.vm.articleContent
+                content: publish.vm.articleContent,
+                type: publish.vm.articleType,
+                title: publish.vm.articleTitle,
+                contentText: publish.vm.articleContentText
             };
+            if ($.trim(data.content) === '' || $.trim(data.type) === '' || $.trim(data.title) === '') {
+                layer.msg('请完善文章信息');
+                return;
+            }
             http.post(url, data, function (result) {
 
                 if (result.code !== 0) {
@@ -32,11 +43,21 @@ publish.vm = new Vue({
         },
         saveDraft: function () {
             publish.vm.articleContent = editor.txt.html();
+            publish.vm.articleContentText = editor.txt.text();
+            publish.vm.articleContent = publish.vm.articleContent.replace("<pre><code>", "<pre class='layui-code'>");
+            publish.vm.articleContent = publish.vm.articleContent.replace("</code></pre>", "</pre>");
 
             var url = '/knowledge/draft';
             var data = {
-                content: publish.vm.articleContent
+                content: publish.vm.articleContent,
+                type: publish.vm.articleType,
+                title: publish.vm.articleTitle,
+                contentText: publish.vm.articleContentText
             };
+            if ($.trim(data.content) === '' || $.trim(data.type) === '' || $.trim(data.title) === '') {
+                layer.msg('请完善文章信息');
+                return;
+            }
             http.post(url, data, function (result) {
 
                 if (result.code !== 0) {
@@ -69,6 +90,13 @@ publish.vm = new Vue({
                 }
             });
         }
-
+    },
+    filters: {
+        date: function (value, fmt) {
+            if (null === value) {
+                return null;
+            }
+            return new Date(value, fmt);
+        }
     }
 });
